@@ -15,8 +15,7 @@ class FactorialCalculatorImpl implements FactorialCalculator {
 
   BigInt _factorial(final int number) {
     if (number == 0) return BigInt.from(1);
-    BigInt bigNumber = BigInt.from(number);
-    return bigNumber * _factorial(number - 1);
+    return BigInt.from(number) * _factorial(number - 1);
   }
 
 }
