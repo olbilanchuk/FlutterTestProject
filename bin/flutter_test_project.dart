@@ -43,7 +43,7 @@ void _readConsolePassword(PasswordChecker passwordChecker) {
   }
 }
 
-void _runPractice2(FactorialCalculator factorialCalculator) {
+void _runPractice2(FactorialCalculator factorialCalculator) async {
   print('Enter number to calculate factorial:');
   int? number = int.tryParse(stdin.readLineSync() ?? "");
 
@@ -51,7 +51,7 @@ void _runPractice2(FactorialCalculator factorialCalculator) {
     return _runPractice2(factorialCalculator);
   }
 
-  factorialCalculator
-      .calculate(number)
-      .then((value) => print('$number factorial = $value'));
+  BigInt result = await factorialCalculator.calculate(number);
+
+  print('$number factorial = $result');
 }
