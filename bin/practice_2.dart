@@ -7,7 +7,7 @@ abstract class FactorialCalculator {
 class FactorialCalculatorImpl implements FactorialCalculator {
   @override
   Future<int> calculate(final int number) async {
-    if (number < 0) return Future.error("Number can't be less than 0");
+    if (number < 0) return Future.error("Can't calculate factorial for $number");
     return Future(() => _factorial(number));
   }
 
