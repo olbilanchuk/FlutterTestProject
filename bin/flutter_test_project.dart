@@ -1,9 +1,29 @@
 import 'dart:io';
 
 import 'practice_1.dart';
+import 'practice_2.dart';
+import 'utils.dart';
+
+const int practice1 = 1;
+const int practice2 = 2;
 
 void main(List<String> arguments) {
-  _readConsolePassword(PasswordCheckerImpl());
+  _runPractices();
+}
+
+void _runPractices() {
+  print('Enter practice number:');
+
+  int practiceNumber = tryParseString(stdin.readLineSync());
+
+  switch (practiceNumber) {
+    case practice1:
+      return _readConsolePassword(PasswordCheckerImpl());
+    case practice2:
+      return _runPractice2(FactorialCalculatorImpl());
+  }
+
+  return _runPractices();
 }
 
 void _readConsolePassword(PasswordChecker passwordChecker) {
@@ -19,4 +39,17 @@ void _readConsolePassword(PasswordChecker passwordChecker) {
   } else {
     print('$password is strong');
   }
+}
+
+void _runPractice2(FactorialCalculator factorialCalculator) {
+  print('Enter number to calculate factorial:');
+  int number = tryParseString(stdin.readLineSync());
+
+  if (number == parseErrorCode) {
+    _runPractice2(factorialCalculator);
+  }
+
+  factorialCalculator
+      .calculate(number)
+      .then((value) => print('$number factorial = $value'));
 }
