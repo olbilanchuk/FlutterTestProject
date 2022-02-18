@@ -13,31 +13,29 @@ void main(List<String> arguments) {
 void _runPractices() {
   print('Enter practice number:');
 
-  int? practiceNumber = int.tryParse(stdin.readLineSync() ?? "");
-  if (practiceNumber == null) {
-    return _runPractices();
-  }
+  final int? practiceNumber = int.tryParse(stdin.readLineSync() ?? "");
 
   switch (practiceNumber) {
     case practice1:
-      return _readConsolePassword(PasswordCheckerImpl());
+      return _runPractice1(PasswordCheckerImpl());
     case practice2:
       return _runPractice2(FactorialCalculatorImpl());
+    default:
+      return _runPractices();
   }
 
-  return _runPractices();
 }
 
-void _readConsolePassword(PasswordChecker passwordChecker) {
+void _runPractice1(PasswordChecker passwordChecker) {
   print('Enter password:');
 
-  String password = stdin.readLineSync() ?? "";
-  int steps = passwordChecker.check(password);
+  final String password = stdin.readLineSync() ?? "";
+  final int steps = passwordChecker.check(password);
 
   if (steps != PasswordChecker.passwordStrong) {
     print(
         '$password is not strong password. Steps to make password strong = $steps');
-    _readConsolePassword(passwordChecker);
+    _runPractice1(passwordChecker);
   } else {
     print('$password is strong');
   }
@@ -45,13 +43,13 @@ void _readConsolePassword(PasswordChecker passwordChecker) {
 
 void _runPractice2(FactorialCalculator factorialCalculator) async {
   print('Enter number to calculate factorial:');
-  int? number = int.tryParse(stdin.readLineSync() ?? "");
+  final int? number = int.tryParse(stdin.readLineSync() ?? "");
 
   if (number == null) {
     return _runPractice2(factorialCalculator);
   }
 
-  BigInt result = await factorialCalculator.calculate(number);
+  final BigInt result = await factorialCalculator.calculate(number);
 
   print('$number factorial = $result');
 }
